@@ -1,14 +1,86 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-navbar>
+<ion-header color="danger">
+  <ion-toolbar color="myColor">
+    <ion-buttons style="float: left;">
+      <button ion-button icon-only color="light">
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title class="center" color="light">Accounts</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only color="light">
+        <ion-icon name="refresh"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar color="myColor">
+    <ion-searchbar [formControl]="searchItem"></ion-searchbar>
+  </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+
+<ion-content>
+
+  <ion-list *ngIf="accounts.length>0">
+    <div class="spinner" *ngIf="loading">
+      <ion-spinner name="bubbles"></ion-spinner>
+    </div>
+    <ion-item *ngFor="let account of accounts">
+      <input type="checkbox" color="primary" [checked]="isSelected(account)" (change)="selectOrUnSelect(account)" item-start>
+
+      <h1>
+        <b  [innerHTML]="highlight(account.number)"></b>
+      </h1>
+      <div style="display: inline-block; width: 100%;">
+        <div style="float: left;">
+          <p>Total Service: {{account.totalServices}}</p>
+        </div>
+        <div style="float: right;">
+          <p>Total Bill:
+            <b>SR {{account.totalBill}}</b>
+          </p>
+        </div>
+      </div>
+      <button ion-button clear item-end>
+        <ion-icon name="ios-arrow-forward"></ion-icon>
+      </button>
+    </ion-item>
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+      <ion-infinite-scroll-content loadingSpinner="bubbles"
+      loadingText="Loading more accounts...">
+
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </ion-list>
+  <p *ngIf="accounts.length==0" style="text-align: center">No Accounts Available</p>
 </ion-content>
+
+
+
+
+
+
+
+
+
+
+
+
+<ion-footer>
+
+  <ion-toolbar style="padding: 0px">
+    <div style="display: inline-block; width: 100%; padding: 4px;">
+      <div style="float: left;" (click)="slectAll()" *ngIf="selectedAcounts.length==0">
+        <p style="color: #dd5c7b;">SELECT ALL</p>
+      </div>
+      <div style="float: left;" (click)="unSelectAll()" *ngIf="selectedAcounts.length>0">
+        <p style="color: #dd5c7b;">UNSELECT ALL</p>
+      </div>
+      <div style="float: right;font-size: 1.5rem;">
+        <p>Total: SR {{getTotal()}}</p>
+      </div>
+    </div>
+    <button ion-button full color="myColor2" [disabled]="selectedAcounts.length==0">PAY</button>
+  </ion-toolbar>
+
+
+</ion-footer>
