@@ -4,6 +4,7 @@ import { FormControl } from '@angular/forms';
 
 import { AccountsProvider } from '../../providers/accounts/accounts';
 import { LoadingController } from 'ionic-angular';
+import {  AccountDetailsPage} from '../account-details/account-details';
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -143,6 +144,11 @@ export class HomePage implements OnInit {
     return content.replace(new RegExp(this.searchItem.value, "gi"), match => {
         return '<span class="highlightText">' + match + '</span>';
     });
+}
+navigateTo(account){
+  this.navCtrl.push(AccountDetailsPage, {
+    account
+  });
 }
 
 

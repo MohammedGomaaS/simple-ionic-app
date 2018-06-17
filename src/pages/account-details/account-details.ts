@@ -14,8 +14,9 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'account-details.html',
 })
 export class AccountDetailsPage {
-
+account:any={number:'',totalBill:'',totalServices:''};
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.account = navParams.data.account;
   }
 
   ionViewDidLoad() {

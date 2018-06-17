@@ -25,11 +25,14 @@
       <ion-spinner name="bubbles"></ion-spinner>
     </div>
     <ion-item *ngFor="let account of accounts">
-      <input type="checkbox" color="primary" [checked]="isSelected(account)" (change)="selectOrUnSelect(account)" item-start>
 
-      <h1>
-        <b  [innerHTML]="highlight(account.number)"></b>
-      </h1>
+      <input type="checkbox" color="primary" [checked]="isSelected(account)" (change)="selectOrUnSelect(account)" item-start>
+     <div class="main-content" (click)="navigateTo(account)">
+      <div style="display: inline;">
+        <h1>
+          <b [innerHTML]="highlight(account.number)"></b>
+        </h1>
+      </div>
       <div style="display: inline-block; width: 100%;">
         <div style="float: left;">
           <p>Total Service: {{account.totalServices}}</p>
@@ -40,13 +43,13 @@
           </p>
         </div>
       </div>
-      <button ion-button clear item-end>
+      </div>
+      <button ion-button clear item-end (click)="navigateTo(account)">
         <ion-icon name="ios-arrow-forward"></ion-icon>
       </button>
     </ion-item>
     <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
-      <ion-infinite-scroll-content loadingSpinner="bubbles"
-      loadingText="Loading more accounts...">
+      <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more accounts...">
 
       </ion-infinite-scroll-content>
     </ion-infinite-scroll>
@@ -70,10 +73,10 @@
   <ion-toolbar style="padding: 0px">
     <div style="display: inline-block; width: 100%; padding: 4px;">
       <div style="float: left;" (click)="slectAll()" *ngIf="selectedAcounts.length==0">
-        <p style="color: #dd5c7b;">SELECT ALL</p>
+        <p style="color: #dd5e82;">SELECT ALL</p>
       </div>
       <div style="float: left;" (click)="unSelectAll()" *ngIf="selectedAcounts.length>0">
-        <p style="color: #dd5c7b;">UNSELECT ALL</p>
+        <p style="color: #dd5e82;">UNSELECT ALL</p>
       </div>
       <div style="float: right;font-size: 1.5rem;">
         <p>Total: SR {{getTotal()}}</p>

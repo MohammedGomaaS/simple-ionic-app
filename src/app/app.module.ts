@@ -11,6 +11,8 @@ import { HttpModule } from '@angular/http';
 import { AccountsProvider } from '../providers/accounts/accounts';
 import { HTTPRequestProvider } from '../providers/http-request/http-request';
 import {DirectivesModule} from '../directives/directives.module';
+import {AccountDetailsPageModule} from '../pages/account-details/account-details.module';
+import { AccountDetailsPage } from '../pages/account-details/account-details';
 @NgModule({
   declarations: [
     MyApp,
@@ -22,12 +24,14 @@ import {DirectivesModule} from '../directives/directives.module';
     FormsModule,
     HttpModule,
     DirectivesModule,
+    AccountDetailsPageModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
+    AccountDetailsPage
   ],
   providers: [
     StatusBar,
