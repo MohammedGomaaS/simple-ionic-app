@@ -54,7 +54,7 @@ export class HomePage implements OnInit {
   }
   resetVariables() {
     this.selectedAcounts = [];
-    this.total = 0;
+    this.total = 0.0;
     this.skip = 0;
     this.searchParams = [];
   }
@@ -118,7 +118,7 @@ export class HomePage implements OnInit {
     return false;
   }
   getTotal() {
-    this.total = 0;
+    this.total = 0.0;
     for (let index = 0; index < this.selectedAcounts.length; index++) {
       this.total += this.selectedAcounts[index].totalBill;
 

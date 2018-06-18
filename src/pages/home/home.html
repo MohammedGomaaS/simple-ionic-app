@@ -26,8 +26,11 @@
     </div>
     <ion-item *ngFor="let account of accounts">
 
-      <input type="checkbox" color="primary" [checked]="isSelected(account)" (change)="selectOrUnSelect(account)" item-start>
-     <div class="main-content" (click)="navigateTo(account)">
+        
+        <ion-checkbox [checked]="isSelected(account)" (click)="selectOrUnSelect(account)" item-start></ion-checkbox>
+      <!-- <input type="checkbox" color="primary" [checked]="isSelected(account)" (change)="selectOrUnSelect(account)" item-start> -->
+      <ion-label>
+      <div class="main-content" (click)="navigateTo(account)">
       <div style="display: inline;">
         <h1>
           <b [innerHTML]="highlight(account.number)"></b>
@@ -35,19 +38,21 @@
       </div>
       <div style="display: inline-block; width: 100%;">
         <div style="float: left;">
-          <p>Total Service: {{account.totalServices}}</p>
+          <p>Total Service: <span style="color: black">{{account.totalServices}}</span></p>
         </div>
         <div style="float: right;">
           <p>Total Bill:
-            <b>SR {{account.totalBill}}</b>
+            <span style="color: black">SR {{account.totalBill}}</span>
           </p>
         </div>
       </div>
       </div>
+    </ion-label>
       <button ion-button clear item-end (click)="navigateTo(account)">
         <ion-icon name="ios-arrow-forward"></ion-icon>
       </button>
     </ion-item>
+    
     <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
       <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more accounts...">
 
@@ -82,7 +87,7 @@
         <p>Total: SR {{getTotal()}}</p>
       </div>
     </div>
-    <button ion-button full color="myColor2" [disabled]="selectedAcounts.length==0">PAY</button>
+    <button ion-button full color="myColor2" style="color:white " [disabled]="selectedAcounts.length==0"><b>PAY</b></button>
   </ion-toolbar>
 
 
