@@ -22,9 +22,9 @@ Getting up and running is as easy as 1, 2, 3, 4, 5,6.
     npm install -g ionic
     ```
 
-4. Go to   "./simple-ionic-app/app-base-url/base-url.ts" and update "base url" with url for web services.
+4. Download and run [simple-express-app](https://github.com/MohammedGomaaS/simple-express-app). 
 
-5. Download and run [simple-express-app](https://github.com/MohammedGomaaS/simple-express-app). 
+5. Go to   "./simple-ionic-app/app-base-url/base-url.ts" and update "base url" with url for web services API(accounts).
 
 6. Start your app "will run on port "8100" in browser
 
